@@ -134,7 +134,7 @@ function evaluateRPN(rpnTokens: string[]): number {
                 if (b === 0) {
                     throw new Error("Division by zero");
                 }
-                result = a / b;
+                result = Math.floor(a / b);
                 break;
             case '%':
                 if (b === 0) {
@@ -159,7 +159,7 @@ function evaluateRPN(rpnTokens: string[]): number {
     return stack[0]!;
 }
 
-export function calc(content: string): string {
+export function evaluateExp(content: string): string {
     try {
         const tokens = parseToken(content.replace(/\s+/g, ''));
         if (tokens.length === 0) {
@@ -176,17 +176,6 @@ export function calc(content: string): string {
 }
 
 async function main() {
-    // 测试用例
-    console.log("测试计算器功能:");
-    console.log("(2*(3-4))*5 =", calc("(2*(3-4))*5"));
-    console.log("2+3*4 =", calc("2+3*4"));
-    console.log("(2+3)*4 =", calc("(2+3)*4"));
-    console.log("2^3+1 =", calc("2^3+1"));
-    console.log("10/2+3*4 =", calc("10/2+3*4"));
-    console.log("(11 + 112) * 223 - 3334 / 44445 =", calc("(11 + 112) * 223 - 3334 / 44445"));
-    console.log("1/0 =", calc("1/0")); // 测试除零错误
-    console.log();
-
     const prompt = ">";
     const allowedChars = /^[0-9+\-*/\s()^%]+$/
     process.stdout.write(prompt);
@@ -201,7 +190,7 @@ async function main() {
             continue;
         }
 
-        console.log(calc(line));
+        console.log(evaluateExp(line));
         process.stdout.write(prompt);
     }
 }
@@ -214,5 +203,4 @@ export const __test__ = {
     parseToken,
     toRPN,
     evaluateRPN,
-    calc,
 };
