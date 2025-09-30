@@ -2,7 +2,7 @@ const env = process.env
 export default{
     port: env.PORT,
     fetch(req){
-        return "hello";
+        return new Response("Upgrade failed");
     }
 }
 
