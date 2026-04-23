@@ -1,0 +1,6 @@
+{
+  "name": "shell",
+  "private": true,
+  "type": "module",
+  "module": "sh.ts"
+}

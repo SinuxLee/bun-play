@@ -1,0 +1,6 @@
+{
+  "name": "hot-reload",
+  "private": true,
+  "type": "module",
+  "module": "index.ts"
+}
