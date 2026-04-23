@@ -1,0 +1,5 @@
+{
+  "name": "cross-compile",
+  "private": true,
+  "type": "module"
+}
