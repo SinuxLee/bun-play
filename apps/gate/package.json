@@ -1,0 +1,12 @@
+{
+  "name": "gate",
+  "private": true,
+  "dependencies": {
+    "hono": "^4.12.2",
+    "msgpackr": "^1.11.8",
+    "nanoid": "^5.1.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
