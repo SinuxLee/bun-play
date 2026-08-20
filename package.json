@@ -14,5 +14,8 @@
   },
   "scripts": {
     "test": "bun --filter '*' test"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.51.0"
   }
 }

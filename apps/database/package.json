@@ -1,0 +1,6 @@
+{
+  "name": "database",
+  "private": true,
+  "type": "module",
+  "module": "cluster.ts"
+}

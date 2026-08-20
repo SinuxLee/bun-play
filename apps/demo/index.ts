@@ -1,5 +1,13 @@
 import { SQL } from "bun";
 
+type WSData = {
+    createdAt: number;
+    channelId: string;
+    authToken: string;
+    uid?: string;
+    roomId?: string;
+};
+
 // Connect to a MySQL or MariaDB database
 const sql = new SQL({
     adapter: "mysql",
@@ -50,11 +58,11 @@ const server = Bun.serve({
     fetch(req, server) {
         const cookies = new Bun.CookieMap(req.headers.get("cookie")!);
 
-        server.upgrade(req, {
+        server.upgrade<WSData>(req, {
             data: {
                 createdAt: Date.now(),
-                channelId: new URL(req.url).searchParams.get("channelId"),
-                authToken: cookies.get("X-Token"),
+                channelId: new URL(req.url).searchParams.get("channelId")!,
+                authToken: cookies.get("X-Token")!,
             },
         });
         return new Response("Upgrade failed", { status: 500 });

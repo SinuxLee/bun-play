@@ -1,0 +1,6 @@
+{
+  "name": "cloud-store",
+  "private": true,
+  "type": "module",
+  "module": "main.ts"
+}

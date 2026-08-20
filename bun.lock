@@ -4,6 +4,9 @@
   "workspaces": {
     "": {
       "name": "cluster",
+      "dependencies": {
+        "es-toolkit": "^1.51.0",
+      },
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -84,6 +87,8 @@
     "detect-libc": ["detect-libc@2.1.2", "", {}, "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ=="],
 
     "embed-c": ["embed-c@workspace:apps/embed-c"],
+
+    "es-toolkit": ["es-toolkit@1.51.0", "", {}, "sha512-zC2lQGkM7QX+Gm6iM3+WIdZJzthsEd14LvRNJneSO2hzyz/zNBENR8+YXWo1cKxgPBtV6ksPYHELbcwBRzmdCw=="],
 
     "gate": ["gate@workspace:apps/gate"],
 
