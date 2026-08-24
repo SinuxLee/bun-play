@@ -16,6 +16,8 @@
     "test": "bun --filter '*' test"
   },
   "dependencies": {
-    "es-toolkit": "^1.51.0"
+    "es-toolkit": "^1.51.0",
+    "jose": "^6.2.10",
+    "lru-cache": "^11.5.2"
   }
 }

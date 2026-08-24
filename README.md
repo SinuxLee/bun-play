@@ -1,6 +1,14 @@
 # bun-play
 
-https://bun.zhcndoc.com/
+- https://bun.zhcndoc.com/
+- https://www.npmleaderboard.org/
+- https://www.packfolio.dev/?q=hono
+- https://npm.anvaka.com/
+- https://npmtrends.com/
+- https://www.npmcharts.com/compare/lodash,debug,typescript
+- https://www.pkgpulse.com/
+- https://stateofjs.com/zh-Hans
+
 
 ### builtin
 - S3
@@ -50,3 +58,16 @@ https://bun.zhcndoc.com/
 - jose
 - pino/LogTape/hono
 - Deno @std/*
+- semver
+- minimatch/picomatch
+- ms
+- lru-cache
+- iconv-lite
+- type-fest
+- argparse/yargs-parser/commander
+- js-yaml/yaml
+- uuid/nanoid
+- camelcase
+- fs-extra/readdirp
+- timer-wheel
+
