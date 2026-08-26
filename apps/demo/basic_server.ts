@@ -1,5 +1,5 @@
-import express from 'express'
-import socketio from 'socket.io'
+import { default as express, type Request, type Response } from 'express'
+import { Server as IOServer } from 'socket.io'
 import http from 'http'
 import cors from 'cors'
 import morgan from 'morgan'
@@ -9,42 +9,47 @@ import cookieparser from "cookie-parser"
 
 
 // 服务应该提供的基本功能
-interface Service{
+interface Service {
 
 }
 
 // 应用的一般流程
-abstract class Application{
+abstract class Application {
 
 }
 
 // 服务
-class Server extends Application implements Service{
+class Server extends Application implements Service {
+   protected constructor() {
+      super();
+   }
 
 }
 
-class GateServer implements Server{
-   protected readonly expressApp : express.Application;
-   protected readonly webServer : http.Server;
-   protected readonly socketIO : socketio.Server;
+class GateServer extends Server {
+   protected readonly expressApp: express.Application;
+   protected readonly webServer: http.Server;
+   protected readonly socketIO: IOServer;
 
-   public constructor(){
+   public constructor() {
+      super();
+
       this.expressApp = express();
       this.webServer = http.createServer(this.expressApp);
-      this.socketIO = socketio(this.webServer)
+      this.socketIO = new IOServer(this.webServer)
 
       this.initApp();
       this.initRouter();
       this.initSocketIOEvent();
    }
 
-   get socketio(): socketio.Server{
+   get socketio(): IOServer {
       return this.socketIO;
    }
 
-   initApp(){
+   initApp() {
       // 跨域问题
-      this.expressApp.use(cors({origin: true, credentials: true}));
+      this.expressApp.use(cors({ origin: true, credentials: true }));
       this.expressApp.enable('trust proxy');
       this.expressApp.disable('etag');
       this.expressApp.disable('x-powered-by');
@@ -52,31 +57,31 @@ class GateServer implements Server{
       // http访问日志
       this.expressApp.use(morgan("combined"));
       this.expressApp.use(bodyparser.json());
-      this.expressApp.use(bodyparser.urlencoded({extended: false}));
+      this.expressApp.use(bodyparser.urlencoded({ extended: false }));
       this.expressApp.use(cookieparser());
 
       // web资源地址
       this.expressApp.use(express.static(path.join(__dirname, 'public')));
    }
 
-   initRouter(){
-      this.expressApp.get('/hello', function(req, res){
-         res.send({"txt":"hello world~"})
+   initRouter() {
+      this.expressApp.get('/hello', (req: Request, res: Response) => {
+         res.send({ "txt": "hello world~" })
       })
    }
 
-   initSocketIOEvent(){
-      this.socketIO.on('connection', function (socket) {
+   initSocketIOEvent() {
+      this.socketIO.on('connection', (socket) => {
          socket.emit('news', { hello: 'world' });
-      
-         socket.on('msg', function (data) {
-           console.log(data);
+
+         socket.on('msg', (data) => {
+            console.log(data);
          });
-        });
+      });
    }
 
-   run(){
-      this.webServer.listen(3000, function(){
+   run() {
+      this.webServer.listen(3000, () => {
          console.log('app is runing!');
       })
    }

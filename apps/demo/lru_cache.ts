@@ -1,5 +1,6 @@
 import assert from 'assert'
 import { LRUCache } from 'lru-cache'
+import { random, randomInt } from 'es-toolkit/math';
 
 const options = {
   max: 500,
@@ -34,7 +35,7 @@ const options = {
 
   // async method to use for cache.fetch(), for
   // stale-while-revalidate type of behavior
-  fetchMethod: async (key, staleValue, { options, signal, context }) => {},
+  fetchMethod: async (key, staleValue, { options, signal, context }) => { },
 }
 
 const cache = new LRUCache(options)
@@ -55,3 +56,10 @@ assert.equal(cache.get(someObject), 'a value')
 assert.equal(cache.get({ a: 1 }), undefined)
 
 cache.clear() // empty the cache
+
+const randomNum = random(0, 5)
+const intNum = randomInt(0, 5)
+console.log(randomNum, intNum);
+
+const arr = Array.from({ length: 4 }, () => Array(10).fill(0).map(() => randomInt(0, 9)));
+console.table(arr);

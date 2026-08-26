@@ -56,7 +56,7 @@
 - picocolors
 - superjson
 - jose
-- pino/LogTape/hono
+- pino/LogTape
 - Deno @std/*
 - semver
 - minimatch/picomatch
@@ -71,3 +71,6 @@
 - fs-extra/readdirp
 - timer-wheel
 
+## release
+
+bun build ./cli.ts --compile --minify --outfile mycli

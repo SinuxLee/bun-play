@@ -72,7 +72,7 @@ const server = Bun.serve({
         perMessageDeflate: true,
         message(ws, message) {
             console.log(ws.data)
-        }, // a message is received
+        },
         open(ws) { }, // a socket is opened
         close(ws, code, message) { }, // a socket is closed
         drain(ws) { }, // the socket is ready to receive more data
