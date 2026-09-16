@@ -4,7 +4,7 @@ let bucket:Bun.S3Client = new Bun.S3Client({
     accessKeyId: "minio",
     secretAccessKey: "ffa@minio",
     region: "us-west-1",
-    endpoint: "http://ffa-db.diandian.info:9000",
+    endpoint: "http://ffa-db.xx.info:9000",
 });
 
 // ping

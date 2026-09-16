@@ -20,7 +20,7 @@ import type { PeerCertificate, TLSSocket } from "node:tls";
 
 function spkiPinFromPem(pem: string | Buffer): string {
   // 等价于：
-  // openssl x509 -in diandian.info.pem -pubkey -noout | \
+  // openssl x509 -in xx.pem -pubkey -noout | \
   // openssl pkey -pubin -outform der | \
   // openssl dgst -sha256 -binary   | openssl base64
   const der = new X509Certificate(pem).publicKey.export({ type: "spki", format: "der" });
@@ -36,7 +36,7 @@ function spkiPinFromPeerCert(cert: PeerCertificate): string {
 // 这样即使将来要整体轮换密钥（不只是续期），也能提前把新 pin 打包进
 // 客户端版本，留出灰度窗口，不会出现"新旧证书都对不上"的空档期。
 const PINNED_SPKI_HASHES = [
-  spkiPinFromPem(readFileSync("./diandian.info.pem")), // 当前在用的证书
+  spkiPinFromPem(readFileSync("./xx.pem")), // 当前在用的证书
   // spkiPinFromPem(readFileSync("./server-cert-next.pem")), // 预留下一把，轮换密钥前先加进来
 ];
 
@@ -61,7 +61,7 @@ function pinnedCheckServerIdentity(hostname: string, cert: PeerCertificate) {
 
 // ---------- 3a. 用在 Bun 的 fetch 上 ----------
 async function testFetch() {
-  const res = await fetch("https://ffa-windev.diandian.info:8443/api/ping", {
+  const res = await fetch("https://ffa-windev.xx.info:8443/api/ping", {
     tls: {
       checkServerIdentity: pinnedCheckServerIdentity,
       // 如果目标证书是自签的（不是公共 CA 签发），还需要显式信任它：
@@ -73,7 +73,7 @@ async function testFetch() {
 
 // ---------- 3b. 用在 wss:// 长连接上（贴近网关场景）----------
 function testWebSocket() {
-  const ws = new WebSocket("wss://ffa-windev.diandian.info:8443/ws", {
+  const ws = new WebSocket("wss://ffa-windev.xx.info:8443/ws", {
     tls: { checkServerIdentity: pinnedCheckServerIdentity },
   });
   ws.addEventListener("open", () => console.log("WSS 已连接，证书校验通过"));
@@ -84,7 +84,7 @@ function testWebSocket() {
 function testTlsConnect() {
   connect(
     {
-      host: "ffa-windev.diandian.info",
+      host: "ffa-windev.xx.info",
       port: 8443,
       checkServerIdentity: pinnedCheckServerIdentity,
     },
