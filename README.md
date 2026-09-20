@@ -56,7 +56,7 @@
 - picocolors
 - superjson
 - jose
-- pino/LogTape
+- pino
 - Deno @std/*
 - semver
 - minimatch/picomatch
