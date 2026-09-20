@@ -39,7 +39,7 @@ const server = Bun.serve<WSData, any>({
             }
 
             const uid = token.replace('mock-token-', '')
-            const success = server.upgrade<WSData>(req, { data: { uid, roomId: '' } })
+            const success = server.upgrade(req, { data: { uid, roomId: '' } })
             if (success) return
 
             return new Response('upgrade failed', { status: 400 })

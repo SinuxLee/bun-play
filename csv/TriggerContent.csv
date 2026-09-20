@@ -1,0 +1,14 @@
+﻿TriggerActivity,,,,,,,,,,
+Id,,TriggerId,AbTestId,PlayerGroupId,ActivityType,ActivityId,ActivityIdSeq,ShowId,IsDynamic,IsEndShow
+int,,int,int,[int],int,int,[int],int,int,int
+,,,,,,,,,,
+编号,策划备注,Trigger表Id,Ab测试Id,用户分层ID,活动类型,活动模板Id,活动模板序列,活动表现模板Id,活动期间是否浮动,活动结束后是否展示
+1,集卡,1,,,1,1,,,,
+2,嘉年华-新手,2,,,2,1,,14,,
+3,活跃进度条,3,,,3,1,,,,
+4,islandRush1,4,,,4,3,,,,
+5,锦标赛,5,,,5,1,,,,
+6,quest,6,,,6,1,,,1,
+7,气球,7,,,7,1,,,,
+8,金猪,8,,,8,1,,,,
+9,活跃进度条-新手,9,,,3,2,,,,
