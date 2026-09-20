@@ -29,12 +29,16 @@ describe('game CSV config compiler', () => {
         ]);
     });
 
-    test('emits schema-checked MessagePack and a generated TS tuple contract', () => {
+    test('emits schema-checked MessagePack, object types, and optional Zod validation', () => {
         const compiled = compileConfigCsv(fixture, 'Monster');
         expect(decode(compiled.bytes)).toEqual(compiled.envelope);
         expect(compiled.envelope[0]).toBe(CONFIG_FORMAT_VERSION);
         expect(compiled.typescript).toContain('export type MonsterWireRow = readonly [');
-        expect(compiled.typescript).toContain('export interface Monster {');
+        expect(compiled.typescript).toContain("import * as z from 'zod';");
+        expect(compiled.typescript).toContain('export const MonsterSchema = z.object({');
+        expect(compiled.typescript).toContain('export type Monster = z.infer<typeof MonsterSchema>;');
+        expect(compiled.typescript).toContain('export interface MonsterDecodeOptions {');
+        expect(compiled.typescript).toContain('const configResult = MonsterSchema.safeParse(config);');
         expect(compiled.typescript).toContain('private readonly byId = new Map<number, Monster>();');
         expect(compiled.typescript).not.toContain('constructor(readonly rows: readonly MonsterWireRow[])');
         expect(compiled.typescript).toContain('decodeMonster');
