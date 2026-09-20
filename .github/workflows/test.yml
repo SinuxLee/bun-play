@@ -1,3 +1,11 @@
+on:
+  push:
+    branches:
+      - 'main'
+      - 'releases/**'
+    paths:
+      - '**.ts'
+
 jobs:
   build:
     name: build-app
