@@ -1,10 +1,10 @@
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
       - 'releases/**'
     paths:
-      - '**.ts'
+      - '**/*.ts'
 
 jobs:
   build:
