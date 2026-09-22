@@ -1,0 +1,8 @@
+{
+  "name": "@bun-play/time",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./time.ts"
+  }
+}

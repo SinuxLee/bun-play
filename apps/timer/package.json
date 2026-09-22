@@ -1,0 +1,11 @@
+{
+  "name": "timer-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun index.ts"
+  },
+  "dependencies": {
+    "@bun-play/time": "workspace:*"
+  }
+}

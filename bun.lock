@@ -80,14 +80,25 @@
     "apps/shell": {
       "name": "shell",
     },
+    "apps/timer": {
+      "name": "timer-example",
+      "dependencies": {
+        "@bun-play/time": "workspace:*",
+      },
+    },
     "packages/astar": {
       "name": "astar",
     },
     "packages/lex": {
       "name": "lex",
     },
+    "packages/time": {
+      "name": "@bun-play/time",
+    },
   },
   "packages": {
+    "@bun-play/time": ["@bun-play/time@workspace:packages/time"],
+
     "@drizzle-team/brocli": ["@drizzle-team/brocli@0.12.1", "", {}, "sha512-yHwomvolVafvUXhy5TdiJVkuNCxXn+bKOs2aWiWEQh/5YaV97Oa/abJz3dmx7lxgIUsUlS1Jl4mEfvJPo3YsVw=="],
 
     "@esbuild/aix-ppc64": ["@esbuild/aix-ppc64@0.25.12", "", { "os": "aix", "cpu": "ppc64" }, "sha512-Hhmwd6CInZ3dwpuGTF8fJG6yoWmsToE+vYgD4nytZVxcu1ulHpUQRAB1UJ8+N1Am3Mz4+xOByoQoSZf4D+CpkA=="],
@@ -405,6 +416,8 @@
     "statuses": ["statuses@2.0.2", "", {}, "sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw=="],
 
     "stream-transform": ["stream-transform@3.5.1", "", {}, "sha512-TTDX+qKFr7GGRXATn66rprmlFPx08W0UBIccE/rMPgW2sT7GovduZYP4xcdJ7Nu2YigF17U+CNFxYY11+W1oPw=="],
+
+    "timer-example": ["timer-example@workspace:apps/timer"],
 
     "toidentifier": ["toidentifier@1.0.1", "", {}, "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA=="],
 
